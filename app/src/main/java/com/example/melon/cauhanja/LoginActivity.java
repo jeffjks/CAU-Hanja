@@ -47,12 +47,10 @@ public class LoginActivity extends AppCompatActivity {
                     JSONObject jsonResponse = new JSONObject(response);
                     boolean success = jsonResponse.getBoolean("success");
                     if (success) {
-                        String memberID = jsonResponse.getString("memberID");
-                        String memberPW = jsonResponse.getString("memberPW");
-                        memberNumber = jsonResponse.getInt("memberNumber");
+                        String name = jsonResponse.getString("memberName");
 
                         Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-                        intent.getIntExtra("Member_Number",memberNumber);
+                        intent.putExtra("MemberData", name);
                         startActivity(intent);
                         finish();
                     }
@@ -63,7 +61,6 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
                 catch (Exception e) {
-
                     e.printStackTrace();
                 }
             }
